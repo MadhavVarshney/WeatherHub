@@ -1,0 +1,365 @@
+#sectionHeader {
+  margin-top: 30px;
+}
+
+#WeatherSection {
+  margin-top: 50px;
+}
+
+.cardHeading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#outerTempdiv {
+  width: 100%;
+}
+
+.cardHeading span {
+  font-weight: 700;
+}
+
+#weatherImg img {
+  width: 200px;
+  height: 200px;
+}
+
+#temp,
+#degree {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+#temp {
+  cursor: pointer;
+}
+
+#celcius,
+#fehrenheit {
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+#tempDiv {
+  margin-top: 35px;
+  padding-left: 50px;
+}
+
+#measures {
+  padding-left: 30px;
+}
+
+.box-table {
+  display: table;
+}
+
+.box-row {
+  display: table-row;
+}
+
+.box-cell {
+  display: table-cell;
+}
+
+.todayDay {
+  font-size: 25px;
+  padding-left: 50px;
+  font-weight: 600;
+}
+
+#mapMarker {
+  margin-right: 10px;
+}
+
+#locationDiv span {
+  font-size: 17px;
+}
+
+#updateTimeDiv {
+  text-align: right;
+}
+
+#updateTimeDiv span {
+  font-size: 11px;
+}
+
+.textFormat {
+  font-weight: 700;
+}
+
+.iconDetailFormat {
+  width: 30px;
+  margin-right: 20px;
+}
+
+.mar-b-10 {
+  margin-bottom: 10px;
+}
+
+.mar-t-10 {
+  margin-top: 10px;
+}
+
+.symptomNameText {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.symptomImg {
+  width: 80px;
+  height: 80px;
+}
+
+#summaryDiv {
+  text-align: center;
+  padding-top: 30px;
+}
+
+#summaryDiv span {
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.display-inlineBlock {
+  display: inline-block;
+}
+
+#covidDivClose button {
+  background: transparent;
+  border: none;
+}
+
+#covidAlertHeadingDiv {
+  width: 50%;
+}
+
+#covidDivClose {
+  width: 50%;
+  text-align: right;
+}
+
+#nocovidDivClose button{
+  background: transparent;
+  border: none;
+}
+
+#nocovidDivClose{
+  float: right;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.symptomNameHeading {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.symptomList {
+  padding-left: 12px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#decreasedSpan {
+  color: darkred;
+  font-weight: 900;
+}
+
+#activeSpan {
+  color: darkred;
+  font-weight: 900;
+}
+
+#recoveredSpan {
+  color: green;
+  font-weight: 900;
+}
+
+#covidlastUpdate {
+  margin-top: 20px;
+}
+
+#covidlastUpdate p {
+  font-size: 10px;
+}
+
+.covidCard {
+  padding: 35px 20px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(140,140,140,.1);
+}
+
+.covidCardHeading {
+  font-size: 12px;
+}
+
+.covidCardTextCount {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+#covidCard1:hover{
+  background-color: rgba(0,0,255,.2);
+}
+
+#covidCard2:hover{
+  background-color: rgba(255,0,0,.2);
+}
+
+#covidCard3:hover{
+  background-color: rgba(0,255,0,.2);
+}
+
+#covidCard4:hover{
+  background-color: rgba(0,0,0,.2);
+}
+
+#covidCard5:hover{
+  background-color: rgba(255,165,0,.2);
+}
+
+#covidCard6:hover{
+  background-color: rgba(255,255,0,.2);
+}
+
+#notIndiaDiv{
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 3px;
+  color: #a94442;
+  padding-left: 20px;
+  height: 30px;
+}
+
+.nextDaysCardFormat{
+  position: relative;
+  border-radius: 5px;
+}
+
+.nextDaysCardImgFormat{
+  position: absolute;
+  border-radius: 5px;
+  height: 100px;
+  width: 160px;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.nextDaysCardImgFormat img{
+  width: 110px;
+  height: 110px;
+}
+
+.nextContentDiv{
+  margin-top: 90px;
+}
+
+.nextDaysSummary{
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.customHeight{
+  height: 60px;
+}
+
+.updownIconDiv{
+  display: inline-block; 
+  width: 50%; 
+  padding: 5px;
+}
+
+.updownIconDiv i{
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+  #WeatherSection {
+    margin-top: 40px;
+  }
+
+  .todayDay {
+    padding-left: 0;
+  }
+
+  #updateTimeDiv {
+    text-align: left;
+  }
+
+  #tempDiv {
+    padding-left: 0;
+  }
+
+  #weatherImg img {
+    width: 180px;
+    height: 180px;
+  }
+
+  #locationDiv {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  #summaryDiv {
+    padding-top: 0px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+
+  #covidCard1{
+    margin-bottom: 10px;
+  }
+  
+  #covidCard2{
+    margin-bottom: 10px;
+  }
+  
+  #covidCard4{
+    margin-bottom: 10px;
+  }
+  
+  #covidCard5{
+    margin-bottom: 10px;
+  }
+  
+  #covidCard6{
+    margin-bottom: 30px;
+  }
+
+
+  .nextDaysCardImgFormat{
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    height: 100%;
+    vertical-align: bottom;
+    margin-right: 10p;
+  }
+
+  .nextContentDiv{
+    display: inline-block;
+    margin-top: 0;
+  }
+
+  .nextDaysSummary{
+    word-wrap: break-word;
+  }
+  
+}
