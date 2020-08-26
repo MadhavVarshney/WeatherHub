@@ -8,7 +8,7 @@
     <section id="sectionHeader">
       <div class="row">
         <div class="col-md-6">
-          <h1>Weather App</h1>
+          <img src="/assets/images/logo.png" alt="Weather Hub logo" id="logoImg" />
         </div>
         <div class="col-md-3" id="locationDiv">
           <span id="locationSpan">
@@ -16,7 +16,7 @@
               *ngIf="state">, {{state}}</span><span *ngIf="country">, {{country}}</span>
           </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" id="locationSearchDiv">
           <input class="form-control" id="locationBox" type="text" placeholder="Type your location..."
             [(ngModel)]="location" (keypress)="submitLocation($event)" />
         </div>

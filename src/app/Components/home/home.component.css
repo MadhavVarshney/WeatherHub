@@ -1,9 +1,14 @@
-#sectionHeader {
+/* #sectionHeader {
   margin-top: 30px;
-}
+} */
 
 #WeatherSection {
   margin-top: 50px;
+}
+
+#logoImg{
+  width: 100px;
+  height: 100px;
 }
 
 .cardHeading {
@@ -75,6 +80,11 @@
 
 #locationDiv span {
   font-size: 17px;
+}
+
+#locationDiv, #locationSearchDiv{
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 #updateTimeDiv {
@@ -401,6 +411,11 @@ footer{
 
   .nextDaysSummary{
     word-wrap: break-word;
+  }
+
+  #locationDiv, #locationSearchDiv{
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   
 }
