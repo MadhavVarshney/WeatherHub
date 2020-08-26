@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   pendingTests: any;
   lastCovidUpdate: any;
   weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  isLoading = true;
+  isSearch = false;
 
   constructor(private apiService: ApiServiceService) { 
     this.longitude = localStorage.getItem('longitude');
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
       data => {
         console.log(data);
         this.location = data.location;
-        this.getTempData(this.location);
+        this.getTempData(this.location, false);
       },
       error => {
         console.log(error);
@@ -64,7 +66,10 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  getTempData(payLoad){
+  getTempData(payLoad, isSearch){
+    if(isSearch){
+      this.isLoading = true;
+    }
     this.apiService.getTemp(payLoad).subscribe(
       data => {
         console.log(data);
@@ -84,6 +89,7 @@ export class HomeComponent implements OnInit {
         this.addDay();
         console.log(this.NextDaysData);
         this.getCovidUpdates(this.locationData, this.state);
+        this.isLoading = false;
       },
       error => {
         console.log(error);
@@ -117,7 +123,7 @@ export class HomeComponent implements OnInit {
 
   submitLocation(event: any){
     if(event.keyCode == 13){
-      this.getTempData(this.location);
+      this.getTempData(this.location, true);
     }
   }
 

@@ -1,260 +1,277 @@
-<div class="container">
-  <section id="sectionHeader">
-    <div class="row">
-      <div class="col-md-6">
-        <h1>Weather App</h1>
-      </div>
-      <div class="col-md-3" id="locationDiv">
-        <span id="locationSpan">
-          <i class="fa fa-map-marker" aria-hidden="true" id="mapMarker"></i><span>{{locationData}}</span><span
-            *ngIf="state">, {{state}}</span><span *ngIf="country">, {{country}}</span>
-        </span>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" id="locationBox" type="text" placeholder="Type your location..."
-          [(ngModel)]="location" (keypress)="submitLocation($event)" />
-      </div>
-    </div>
-  </section>
-  <section id="WeatherSection">
-    <div class="row">
-      <div class="col-md-6">
-        <div id="weatherWidget" class="shadow p-3 mb-5 bg-white rounded">
-          <div class="cardHeading">
-            <span>
-              LOCAL WEATHER REPORT
-            </span>
-          </div>
-          <div id="internalWeatherDiv" class="box-table">
-            <div class="box-row">
-              <div class="box-cell">
-                <div id="weatherImg">
-                  <img *ngIf="weatherImg === 'partly-cloudy-day'" src="/assets/images/svg/cloudy-day-1.svg"
-                    alt="Weather image" />
-                  <img *ngIf="weatherImg === 'clear-day'" src="/assets/images/svg/day.svg" alt="Weather image" />
-                  <img *ngIf="weatherImg === 'clear-night'" src="/assets/images/svg/night.svg" alt="Weather image" />
-                  <img *ngIf="weatherImg === 'partly-cloudy-night'" src="/assets/images/svg/cloudy-night-1.svg"
-                    alt="Weather image" />
-                  <img *ngIf="weatherImg === 'rain'" src="/assets/images/svg/rainy-1.svg" alt="Weather image" />
-                  <img *ngIf="weatherImg === 'cloudy'" src="/assets/images/svg/cloudy-day-3.svg" alt="Weather image" />
-                </div>
-              </div>
-              <div class="box-cell" id="outerTempdiv">
-                <div id="tempDiv" class="box-cell">
-                  <span id="temp" (click)="clickToConvert()">{{temperature}}</span><span id="degree">°</span><span
-                    *ngIf="isCelcius">C</span><span *ngIf="!isCelcius">F</span>
-                </div>
-                <p *ngIf="day === 0" class="todayDay">Sunday</p>
-                <p *ngIf="day === 1" class="todayDay">Monday</p>
-                <p *ngIf="day === 2" class="todayDay">Tuesday</p>
-                <p *ngIf="day === 3" class="todayDay">Wednesday</p>
-                <p *ngIf="day === 4" class="todayDay">Thursday</p>
-                <p *ngIf="day === 5" class="todayDay">Friday</p>
-                <p *ngIf="day === 6" class="todayDay">Saturday</p>
-                <div id="updateTimeDiv">
-                  <span>Updated as of {{lastUpdateOn}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="shadow p-3 mb-5 bg-white rounded">
-          <div class="cardHeading">
-            <span>DAY DETAILS</span>
-          </div>
-          <div class="row">
-            <div class="col-md-6" id="summaryDiv">
-              <span>{{brief}}</span>
-            </div>
-            <div class="col-md-6">
-              <div>
-                <div class="mar-b-10">
-                  <img src="/assets/images/sunrise.png" class="iconDetailFormat" /><span> {{sunRise}}</span>
-                </div>
-                <div class="mar-b-10">
-                  <img src="/assets/images/sunset.png" class="iconDetailFormat" /><span> {{sunSet}}</span>
-                </div>
-                <div class="mar-b-10">
-                  <img src="/assets/images/rain.png" class="iconDetailFormat" /><span> {{rainChance}}%</span>
-                </div>
-                <div class="mar-b-10">
-                  <img src="/assets/images/humidity.png" class="iconDetailFormat" /><span> {{humidity}}%</span>
-                </div>
-                <div class="mar-b-10">
-                  <img src="/assets/images/wind.png" class="iconDetailFormat" /><span> {{windSpeed}} km/h</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="covidSection" *ngIf="isCovidVisible && country == 'India'">
-    <div class="shadow p-3 mb-5 rounded" id="innerCovidDiv">
-      <div>
-        <div class="display-inlineBlock" id="covidAlertHeadingDiv">
-          <h5>Covid Alert!</h5>
-        </div>
-        <div class="display-inlineBlock" id="covidDivClose">
-          <button (click)="closeCovidSec()"><i class="fa fa-times" aria-hidden="true"></i><span
-              class="sr-only">Close</span></button>
-        </div>
-      </div>
+<div class="loading-screen-wrapper" *ngIf="isLoading">
+  <div class="loading-screen-icon">
+    <img src="/assets/images/searching.gif" />
+  </div>
+</div>
+<div *ngIf="!isLoading">
+  <div class="container">
+    <section id="sectionHeader">
       <div class="row">
         <div class="col-md-6">
-          <div class="row mar-t-10">
-            <div class="col-md-12">
-              <h6>Updates</h6>
+          <h1>Weather App</h1>
+        </div>
+        <div class="col-md-3" id="locationDiv">
+          <span id="locationSpan">
+            <i class="fa fa-map-marker" aria-hidden="true" id="mapMarker"></i><span>{{locationData}}</span><span
+              *ngIf="state">, {{state}}</span><span *ngIf="country">, {{country}}</span>
+          </span>
+        </div>
+        <div class="col-md-3">
+          <input class="form-control" id="locationBox" type="text" placeholder="Type your location..."
+            [(ngModel)]="location" (keypress)="submitLocation($event)" />
+        </div>
+      </div>
+    </section>
+    <section id="WeatherSection">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="weatherWidget" class="shadow p-3 mb-5 bg-white rounded">
+            <div class="cardHeading">
+              <span>
+                LOCAL WEATHER REPORT
+              </span>
             </div>
-          </div>
-          <div class="row mar-t-10">
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard1">
-                <p class="covidCardHeading">Total confirm cases</p>
-                <span class="covidCardTextCount">{{confirmCases}}</span>
+            <div id="internalWeatherDiv" class="box-table">
+              <div class="box-row">
+                <div class="box-cell">
+                  <div id="weatherImg">
+                    <img *ngIf="weatherImg === 'partly-cloudy-day'" src="/assets/images/svg/cloudy-day-3.svg"
+                      alt="Weather image" />
+                    <img *ngIf="weatherImg === 'clear-day'" src="/assets/images/svg/day.svg" alt="Weather image" />
+                    <img *ngIf="weatherImg === 'clear-night'" src="/assets/images/svg/night.svg" alt="Weather image" />
+                    <img *ngIf="weatherImg === 'partly-cloudy-night'" src="/assets/images/svg/cloudy-night-6.svg"
+                      alt="Weather image" />
+                    <img *ngIf="weatherImg === 'rain'" src="/assets/images/svg/rainy-6.svg" alt="Weather image" />
+                    <img *ngIf="weatherImg === 'cloudy'" src="/assets/images/svg/cloudy.svg" alt="Weather image" />
+                    <img *ngIf="weatherImg === 'snow'" src="/assets/images/svg/snowy-6.svg" alt="Weather image" />
+                    <img *ngIf="weatherImg === 'wind'" src="/assets/images/svg/windy-cloud-weather.gif"
+                      alt="Weather image" />
+                  </div>
+                </div>
+                <div class="box-cell" id="outerTempdiv">
+                  <div id="tempDiv" class="box-cell">
+                    <span id="temp" (click)="clickToConvert()">{{temperature}}</span><span id="degree">°</span><span
+                      *ngIf="isCelcius">C</span><span *ngIf="!isCelcius">F</span>
+                  </div>
+                  <p *ngIf="day === 0" class="todayDay">Sunday</p>
+                  <p *ngIf="day === 1" class="todayDay">Monday</p>
+                  <p *ngIf="day === 2" class="todayDay">Tuesday</p>
+                  <p *ngIf="day === 3" class="todayDay">Wednesday</p>
+                  <p *ngIf="day === 4" class="todayDay">Thursday</p>
+                  <p *ngIf="day === 5" class="todayDay">Friday</p>
+                  <p *ngIf="day === 6" class="todayDay">Saturday</p>
+                  <div id="updateTimeDiv">
+                    <span>Updated as of {{lastUpdateOn}}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard2">
-                <p class="covidCardHeading">Active cases</p>
-                <span id="activeSpan" class="covidCardTextCount">{{activeCases}}</span>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard3">
-                <p class="covidCardHeading">Recovered cases</p>
-                <span id="recoveredSpan" class="covidCardTextCount">{{recoverCases}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="row mar-t-10">
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard4">
-                <p class="covidCardHeading">Decreased</p>
-                <span id="decreasedSpan" class="covidCardTextCount">{{decreased}}</span>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard5">
-                <p class="covidCardHeading">Pending Reports</p>
-                <span class="covidCardTextCount">{{pendingReports}}</span>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="covidCard" id="covidCard6">
-                <p class="covidCardHeading">Pending Tests</p>
-                <span class="covidCardTextCount">{{pendingTests}}</span>
-              </div>
-            </div>
-          </div>
-          <div id="covidlastUpdate">
-            <p>{{lastCovidUpdate}}</p>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="row mar-t-10">
-            <div class="col-md-12">
-              <h6>Symptoms</h6>
+          <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="cardHeading">
+              <span>DAY DETAILS</span>
             </div>
-          </div>
-          <div class="row mar-t-10 mar-b-10">
-            <div class="col-md-4 text-align-center">
-              <img alt="Dry cough" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_cough.gif"
-                class="symptomImg">
-              <p class="symptomNameText">Dry cough</p>
+            <div class="row">
+              <div class="col-md-6" id="summaryDiv">
+                <span>{{brief}}</span>
+              </div>
+              <div class="col-md-6">
+                <div>
+                  <div class="mar-b-10">
+                    <img src="/assets/images/sunrise.png" class="iconDetailFormat" /><span> {{sunRise}}</span>
+                  </div>
+                  <div class="mar-b-10">
+                    <img src="/assets/images/sunset.png" class="iconDetailFormat" /><span> {{sunSet}}</span>
+                  </div>
+                  <div class="mar-b-10">
+                    <img src="/assets/images/rain.png" class="iconDetailFormat" /><span> {{rainChance}}%</span>
+                  </div>
+                  <div class="mar-b-10">
+                    <img src="/assets/images/humidity.png" class="iconDetailFormat" /><span> {{humidity}}%</span>
+                  </div>
+                  <div class="mar-b-10">
+                    <img src="/assets/images/wind.png" class="iconDetailFormat" /><span> {{windSpeed}} km/h</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4 text-align-center">
-              <img alt="Fever" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_fever.gif"
-                class="symptomImg">
-              <p class="symptomNameText">Fever</p>
-            </div>
-            <div class="col-md-4 text-align-center">
-              <img alt="Tiredness" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_tiredness.gif"
-                class="symptomImg">
-              <p class="symptomNameText">Tiredness</p>
-            </div>
-          </div>
-          <div class="row mar-t-10">
-            <div class="col-md-4">
-              <p class="symptomNameHeading">Most common symptoms:</p>
-              <ul class="symptomNameText symptomList">
-                <li>Fever</li>
-                <li>Dry cough</li>
-                <li>Tiredness</li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <p class="symptomNameHeading">Less common symptoms:</p>
-              <ul class="symptomNameText symptomList">
-                <li>Aches and pains</li>
-                <li>Sore throat</li>
-                <li>Diarrhoea</li>
-                <li>Conjunctivitis</li>
-                <li>Headache</li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <p class="symptomNameHeading">Some serious symptoms:</p>
-              <ul class="symptomNameText symptomList">
-                <li>Difficulty breathing or shortness of breath</li>
-                <li>Chest pain or pressure</li>
-                <li>Loss of speech or movement</li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section *ngIf="country != 'India' && !isNoCovid">
-    <div class="row">
-      <div class="col-md-12">
-        <div id="notIndiaDiv">
-          <span>Covid-19 updates aren't available outside India right now.</span>
-          <div class="display-inlineBlock" id="nocovidDivClose">
-            <button (click)="closeNoCovidSe()"><i class="fa fa-times" aria-hidden="true"></i><span
+    </section>
+    <section id="covidSection" *ngIf="isCovidVisible && country == 'India'">
+      <div class="shadow p-3 mb-5 rounded" id="innerCovidDiv">
+        <div>
+          <div class="display-inlineBlock" id="covidAlertHeadingDiv">
+            <h5>Covid Alert!</h5>
+          </div>
+          <div class="display-inlineBlock" id="covidDivClose">
+            <button (click)="closeCovidSec()"><i class="fa fa-times" aria-hidden="true"></i><span
                 class="sr-only">Close</span></button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section id="nextDaysDataSec">
-    <div class="row">
-      <div class="col-md-2" *ngFor="let data of NextDaysData, let i = index">
-        <div class="shadow p-3 mb-5 bg-white rounded nextDaysCardFormat" id="cardDiv{{i}}">
-          <div class="nextDaysCardImgFormat" id="CardImg{{i}}">
-            <img *ngIf="data.icon === 'partly-cloudy-day'" src="/assets/images/svg/cloudy-day-1.svg"
-              alt="Weather image" />
-            <img *ngIf="data.icon === 'clear-day'" src="/assets/images/svg/day.svg" alt="Weather image" />
-            <img *ngIf="data.icon === 'clear-night'" src="/assets/images/svg/night.svg" alt="Weather image" />
-            <img *ngIf="data.icon === 'partly-cloudy-night'" src="/assets/images/svg/cloudy-night-1.svg"
-              alt="Weather image" />
-            <img *ngIf="data.icon === 'rain'" src="/assets/images/svg/rainy-1.svg" alt="Weather image" />
-            <img *ngIf="data.icon === 'cloudy'" src="/assets/images/svg/cloudy-day-3.svg" alt="Weather image" />
-          </div>
-          <div class="nextContentDiv">
-            <p>{{data.day}}</p>
-            <div class="customHeight">
-              <div>
-                <p class="nextDaysSummary">{{data.summary}}</p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row mar-t-10">
+              <div class="col-md-12">
+                <h6>Updates</h6>
               </div>
             </div>
-            <div>
-              <div class="updownIconDiv">
-                <i class="fa fa-arrow-up" aria-hidden="true"></i><span>{{data.temMax}}°C</span>
+            <div class="row mar-t-10">
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard1">
+                  <p class="covidCardHeading">Total confirm cases</p>
+                  <span class="covidCardTextCount">{{confirmCases}}</span>
+                </div>
               </div>
-              <div class="updownIconDiv">
-                <i class="fa fa-arrow-down" aria-hidden="true"></i><span>{{data.temMin}}°C</span>
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard2">
+                  <p class="covidCardHeading">Active cases</p>
+                  <span id="activeSpan" class="covidCardTextCount">{{activeCases}}</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard3">
+                  <p class="covidCardHeading">Recovered cases</p>
+                  <span id="recoveredSpan" class="covidCardTextCount">{{recoverCases}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="row mar-t-10">
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard4">
+                  <p class="covidCardHeading">Decreased</p>
+                  <span id="decreasedSpan" class="covidCardTextCount">{{decreased}}</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard5">
+                  <p class="covidCardHeading">Pending Reports</p>
+                  <span class="covidCardTextCount">{{pendingReports}}</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="covidCard" id="covidCard6">
+                  <p class="covidCardHeading">Pending Tests</p>
+                  <span class="covidCardTextCount">{{pendingTests}}</span>
+                </div>
+              </div>
+            </div>
+            <div id="covidlastUpdate">
+              <p>{{lastCovidUpdate}}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row mar-t-10">
+              <div class="col-md-12">
+                <h6>Symptoms</h6>
+              </div>
+            </div>
+            <div class="row mar-t-10 mar-b-10">
+              <div class="col-md-4 text-align-center">
+                <img alt="Dry cough" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_cough.gif"
+                  class="symptomImg">
+                <p class="symptomNameText">Dry cough</p>
+              </div>
+              <div class="col-md-4 text-align-center">
+                <img alt="Fever" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_fever.gif"
+                  class="symptomImg">
+                <p class="symptomNameText">Fever</p>
+              </div>
+              <div class="col-md-4 text-align-center">
+                <img alt="Tiredness" src="https://www.gstatic.com/healthricherkp/covidsymptoms/light_tiredness.gif"
+                  class="symptomImg">
+                <p class="symptomNameText">Tiredness</p>
+              </div>
+            </div>
+            <div class="row mar-t-10">
+              <div class="col-md-4">
+                <p class="symptomNameHeading">Most common symptoms:</p>
+                <ul class="symptomNameText symptomList">
+                  <li>Fever</li>
+                  <li>Dry cough</li>
+                  <li>Tiredness</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <p class="symptomNameHeading">Less common symptoms:</p>
+                <ul class="symptomNameText symptomList">
+                  <li>Aches and pains</li>
+                  <li>Sore throat</li>
+                  <li>Diarrhoea</li>
+                  <li>Conjunctivitis</li>
+                  <li>Headache</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <p class="symptomNameHeading">Some serious symptoms:</p>
+                <ul class="symptomNameText symptomList">
+                  <li>Difficulty breathing or shortness of breath</li>
+                  <li>Chest pain or pressure</li>
+                  <li>Loss of speech or movement</li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <section *ngIf="country != 'India' && !isNoCovid" id="noCovidSection">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="notIndiaDiv">
+            <span>Covid-19 updates aren't available outside India right now.</span>
+            <div class="display-inlineBlock" id="nocovidDivClose">
+              <button (click)="closeNoCovidSe()"><i class="fa fa-times" aria-hidden="true"></i><span
+                  class="sr-only">Close</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="nextDaysDataSec">
+      <div class="row">
+        <div class="col-md-2" *ngFor="let data of NextDaysData, let i = index">
+          <div class="shadow p-3 mb-5 bg-white rounded nextDaysCardFormat" id="cardDiv{{i}}">
+            <div class="nextDaysCardImgFormat" id="CardImg{{i}}">
+              <img *ngIf="data.icon === 'partly-cloudy-day'" src="/assets/images/svg/cloudy-day-3.svg"
+                alt="Weather image" />
+              <img *ngIf="data.icon === 'clear-day'" src="/assets/images/svg/day.svg" alt="Weather image" />
+              <img *ngIf="data.icon === 'clear-night'" src="/assets/images/svg/night.svg" alt="Weather image" />
+              <img *ngIf="data.icon === 'partly-cloudy-night'" src="/assets/images/svg/cloudy-night-6.svg"
+                alt="Weather image" />
+              <img *ngIf="data.icon === 'rain'" src="/assets/images/svg/rainy-6.svg" alt="Weather image" />
+              <img *ngIf="data.icon === 'cloudy'" src="/assets/images/svg/cloudy.svg" alt="Weather image" />
+              <img *ngIf="data.icon === 'snow'" src="/assets/images/svg/snowy-6.svg" alt="Weather image" />
+              <img *ngIf="data.icon === 'wind'" src="/assets/images/svg/windy-cloud-weather.gif" alt="Weather image" />
+            </div>
+            <div class="nextContentDiv">
+              <p>{{data.day}}</p>
+              <div class="customHeight">
+                <div>
+                  <p class="nextDaysSummary">{{data.summary}}</p>
+                </div>
+              </div>
+              <div>
+                <div class="updownIconDiv">
+                  <i class="fa fa-arrow-up" aria-hidden="true"></i><span>{{data.temMax}}°C</span>
+                </div>
+                <div class="updownIconDiv">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i><span>{{data.temMin}}°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
+<section *ngIf="!isLoading" id="footerSection">
+  <footer>
+    <p>Made with ❤ by Madhav & Madhur</p>
+  </footer>
+</section>
