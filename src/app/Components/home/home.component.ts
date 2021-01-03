@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getLocation(this.longitude, this.lattitude);
     this.todayDate();
+    this.digitWithSuffix();
     //this.showCovidAlert();
   }
 
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit {
         this.country = data.country;
         this.addDay();
         console.log(this.NextDaysData);
-        this.getCovidUpdates(this.locationData, this.state);
+        //this.getCovidUpdates(this.locationData, this.state);
         this.isLoading = false;
       },
       error => {
@@ -97,23 +98,36 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  getCovidUpdates(city, state){
-    this.apiService.getCovidInfo(city, state).subscribe(
-      data => {
-        console.log(data);
-        this.confirmCases = data.confirmCase;
-        this.activeCases = data.activeCase;
-        this.pendingReports = data.pendingReport;
-        this.decreased = data.death;
-        this.recoverCases = data.recoverCase;
-        this.pendingTests = data.pendingTest;
-        this.lastCovidUpdate = data.lastUpdate;
-      },
-      error =>{
-        console.log(error);
-      }
-    );
+  // getCovidUpdates(city, state){
+  //   this.apiService.getCovidInfo(city, state).subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.confirmCases = data.confirmCase;
+  //       this.activeCases = data.activeCase;
+  //       this.pendingReports = data.pendingReport;
+  //       this.decreased = data.death;
+  //       this.recoverCases = data.recoverCase;
+  //       this.pendingTests = data.pendingTest;
+  //       this.lastCovidUpdate = data.lastUpdate;
+  //     },
+  //     error =>{
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+
+  digitWithSuffix(count = 1000000){
+    if(count < 1000){
+      return "" + count;
+    }
+    if(count >= 1000 && count <= 1000000 ){
+      let exp: number = Math.log(count) / Math.log(1000);
+      let num =  count / Math.pow(1000, exp);
+      console.log(num);
+    }
   }
+
+
 
   todayDate(){
     var today = new Date();

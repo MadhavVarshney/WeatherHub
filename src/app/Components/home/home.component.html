@@ -102,7 +102,7 @@
         </div>
       </div>
     </section>
-    <section id="covidSection" *ngIf="isCovidVisible && country == 'India'">
+    <!-- <section id="covidSection" *ngIf="isCovidVisible && country == 'India'">
       <div class="shadow p-3 mb-5 rounded" id="innerCovidDiv">
         <div>
           <div class="display-inlineBlock" id="covidAlertHeadingDiv">
@@ -218,7 +218,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section *ngIf="country != 'India' && !isNoCovid" id="noCovidSection">
       <div class="row">
         <div class="col-md-12">
@@ -234,7 +234,7 @@
     </section>
     <section id="nextDaysDataSec">
       <div class="row">
-        <div class="col-md-2" *ngFor="let data of NextDaysData, let i = index">
+        <div Id="custom-div" class="col-md-2 col-sm-4" *ngFor="let data of NextDaysData, let i = index">
           <div class="shadow p-3 mb-5 bg-white rounded nextDaysCardFormat" id="cardDiv{{i}}">
             <div class="nextDaysCardImgFormat" id="CardImg{{i}}">
               <img *ngIf="data.icon === 'partly-cloudy-day'" src="/assets/images/svg/cloudy-day-3.svg"

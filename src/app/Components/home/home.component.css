@@ -267,7 +267,7 @@
   height: 100px;
   width: 160px;
   top: 0;
-  left: 0;
+  left: 0px;
   text-align: center;
 }
 
@@ -339,7 +339,20 @@ footer{
     height: 100px;
 }
 
-
+@media only screen and (max-width: 424px) {
+  .nextContentDiv{
+    margin-top: 90px;
+    width: 60% !important;
+  }
+  .nextDaysCardImgFormat{
+    display: inline-block;
+    width: 40% !important;
+    position: relative;
+    height: 100%;
+    vertical-align: bottom;
+    margin-right: 10p;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   #WeatherSection {
@@ -394,7 +407,6 @@ footer{
     margin-bottom: 30px;
   }
 
-
   .nextDaysCardImgFormat{
     display: inline-block;
     width: 50%;
@@ -418,4 +430,58 @@ footer{
     padding-bottom: 0px;
   }
   
+}
+
+@media only screen and (max-width:992px) and (min-width:768px)
+{
+  .nextDaysCardImgFormat{
+    position: absolute;
+    border-radius: 5px;
+    height: 100px;
+    width: 160px;
+    top: 0;
+    left: -25px;
+    text-align: center;
+  }
+  #custom-div
+  {
+     padding:15px 5px !important;
+  }
+
+  #tempDiv {
+    margin-top: 35px;
+    padding-left: 0px;
+  }
+  
+  .todayDay {
+    font-size: 25px;
+    padding-left: 0px;
+    font-weight: 600;
+  }
+
+  #updateTimeDiv span {
+    font-size: 10px;
+    position: absolute;
+    right: 45px;
+  }
+}
+
+@media only screen and (max-width:767px){
+  #summaryDiv {
+    text-align: center;
+    padding: 0px 0px 15px 0px;
+    margin: 0px;
+  }
+}
+
+@media only screen and (max-width:1200px) and (min-width:993px){
+  .nextDaysCardImgFormat{
+    position: absolute;
+    border-radius: 5px;
+    height: 100px;
+    width: 160px;
+    top: 0;
+    left: -15px;
+    text-align: center;
+  }
 }
